@@ -31,7 +31,7 @@
 	export OF_PATCH_AVB20=1
 
 	# magisk addon
-	export FOX_USE_SPECIFIC_MAGISK_ZIP=~/Magisk/Magisk-v28.0.zip
+	export FOX_USE_SPECIFIC_MAGISK_ZIP=~/Magisk/Magisk-v28.1.zip
 
     	# dynamic partitions ?
     	export FOX_USE_DYNAMIC_PARTITIONS=1; # make all builds dynamic
