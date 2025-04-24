@@ -1,6 +1,6 @@
 #
 #	This file is part of the OrangeFox Recovery Project
-# 	Copyright (C) 2018-2024 The OrangeFox Recovery Project
+# 	Copyright (C) 2018-2025 The OrangeFox Recovery Project
 #	
 #	OrangeFox is free software: you can redistribute it and/or modify
 #	it under the terms of the GNU General Public License as published by
@@ -27,8 +27,10 @@
 	export FOX_USE_ZSTD_BINARY=1
 	export FOX_USE_SED_BINARY=1
 	export FOX_USE_XZ_UTILS=1
+	export FOX_USE_DATE_BINARY=1
 	export FOX_DELETE_AROMAFM=1
 	export OF_PATCH_AVB20=1
+	export FOX_USE_NANO_EDITOR=1
 
 	# magisk addon
 	export FOX_USE_SPECIFIC_MAGISK_ZIP=~/Magisk/Magisk-v28.1.zip
