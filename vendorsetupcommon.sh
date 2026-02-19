@@ -1,6 +1,6 @@
 #
 #	This file is part of the OrangeFox Recovery Project
-# 	Copyright (C) 2018-2025 The OrangeFox Recovery Project
+# 	Copyright (C) 2018-2026 The OrangeFox Recovery Project
 #	
 #	OrangeFox is free software: you can redistribute it and/or modify
 #	it under the terms of the GNU General Public License as published by
@@ -31,9 +31,6 @@
 	export FOX_DELETE_AROMAFM=1
 	export OF_PATCH_AVB20=1
 	export FOX_USE_NANO_EDITOR=1
-
-	# magisk addon
-	export FOX_USE_SPECIFIC_MAGISK_ZIP=~/Magisk/Magisk-v28.1.zip
 
     	# dynamic partitions ?
     	export FOX_USE_DYNAMIC_PARTITIONS=1; # make all builds dynamic
