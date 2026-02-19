@@ -25,6 +25,9 @@
 # *not* include it on all devices, so it is safe even with hardware-specific
 # components.
 
+# default to R12.x build, for the pixel format
+#FOX_R11.x := true
+
 # common paths
 SDM845_COMMON_PATH := device/xiaomi/sdm845-common
 TARGET_RECOVERY_DEVICE_DIRS += $(SDM845_COMMON_PATH)
@@ -150,9 +153,15 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno630
 # Recovery
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_HAS_NO_SELECT_BUTTON := true
-TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
+
+# RGBX is needed for R12.0 SVG
+ifeq ($(FOX_R11.x),true)
+    TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
+else
+    TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
+endif
 
 # Broken Rules
 BUILD_BROKEN_DUP_RULES := true
