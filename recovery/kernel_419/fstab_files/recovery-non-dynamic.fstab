@@ -1,0 +1,15 @@
+# ----------------------------------------------------------
+/dev/block/bootdevice/by-name/cache          /cache                  ext4    noatime,nosuid,nodev,barrier=1   			wait
+/dev/block/bootdevice/by-name/misc           /misc                   emmc    defaults                         			defaults
+
+/dev/block/bootdevice/by-name/system         /system                 ext4    ro,barrier=1,discard               		wait,first_stage_mount
+/dev/block/bootdevice/by-name/system         /system                 erofs   ro,barrier=1,discard 				wait,first_stage_mount
+
+/dev/block/bootdevice/by-name/cust           /system_ext             ext4    ro,barrier=1,discard               		wait,first_stage_mount
+/dev/block/bootdevice/by-name/cust           /system_ext             erofs   ro,barrier=1,discard				wait,first_stage_mount
+
+/dev/block/bootdevice/by-name/vendor         /vendor                 ext4    ro,barrier=1,discard               		wait,first_stage_mount
+/dev/block/bootdevice/by-name/vendor         /vendor                 erofs   ro,barrier=1,discard        			wait,first_stage_mount
+
+/dev/block/bootdevice/by-name/userdata       /data                   ext4    noatime,nosuid,nodev,barrier=0,noauto_da_alloc	latemount,wait,check,fileencryption=ice,quota
+#
