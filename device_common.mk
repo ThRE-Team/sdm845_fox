@@ -1,7 +1,7 @@
 #
 # Copyright (C) 2021 The TeamWin Recovery Project
 #
-# Copyright (C) 2019-2024 OrangeFox Recovery Project
+# Copyright (C) 2019-2026 OrangeFox Recovery Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -80,11 +80,13 @@ else
 endif
 
 # Crypto
+ifneq ($(FOX_KERNEL),4.19)
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 BOARD_USES_QCOM_FBE_DECRYPTION := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 BOARD_USES_METADATA_PARTITION := true
+endif
 
 # version
 PLATFORM_VERSION := 99.87.36
@@ -163,9 +165,43 @@ endif
 # Inherit from the device-specific device.mk (if it exists) as the last in the chain
 $(call inherit-product-if-exists, $(DEVICE_PATH)/device.mk)
 
+# kernel 4.19, static or dynamic
+ifeq ($(FOX_KERNEL),4.19)
+
+# FUSE passthrough
+PRODUCT_SYSTEM_PROPERTIES += \
+    persist.sys.fuse.passthrough.enable=true
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
+
+# Enable project quotas and casefolding for emulated storage without sdcardfs
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+
+# f2fs utilities
+PRODUCT_PACKAGES += \
+    sg_write_buffer \
+    f2fs_io \
+    check_f2fs
+
+# --- Decryption (doesn't work!)
+OF_FBE_METADATA_MOUNT_IGNORE := 1
+OF_FIX_DECRYPTION_ON_DATA_MEDIA := 1
+
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.crypto.dm_default_key.options_format.version=2 \
+	ro.crypto.volume.filenames_mode=aes-256-cts \
+	ro.crypto.volume.metadata.method=dm-default-key \
+	ro.crypto.allow_encrypt_override=true \
+	ro.crypto.volume.options=::v2 \
+	ro.crypto.uses_fs_ioc_add_encryption_key=true
+endif
+
 # initial prop for variant
 ifneq ($(FOX_VARIANT),)
   PRODUCT_PROPERTY_OVERRIDES += \
 	ro.orangefox.variant=$(FOX_VARIANT)
+else
+  PRODUCT_PROPERTY_OVERRIDES += \
+	ro.orangefox.variant=default
 endif
 #

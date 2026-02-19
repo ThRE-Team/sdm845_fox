@@ -1,7 +1,7 @@
 #
 # Copyright 2017 The Android Open Source Project
 #
-# Copyright (C) 2019-2024 OrangeFox Recovery Project
+# Copyright (C) 2019-2026 OrangeFox Recovery Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -85,7 +85,16 @@ BOARD_BOOT_HEADER_VERSION := 1
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 
 # kernel paths
-KERNEL_PATH := $(DEVICE_PATH)/prebuilt
+ifeq ($(FOX_KERNEL),4.19)
+    KERNEL_PATH := $(DEVICE_PATH)/prebuilt/419
+    KERNEL_STUFF_LOCATION := kernel_419
+else
+    KERNEL_PATH := $(DEVICE_PATH)/prebuilt
+    KERNEL_STUFF_LOCATION := kernel_44
+endif
+
+# variants
+VARIANT_SRC_DIR := $(SDM845_COMMON_PATH)/recovery/$(KERNEL_STUFF_LOCATION)
 
 # whether to do an inline build of the kernel sources
 #FOX_BUILD_FULL_KERNEL_SOURCES := 1
@@ -187,8 +196,8 @@ ifeq ($(FOX_USE_DYNAMIC_PARTITIONS),1)
   BOARD_XIAOMI845_DYNAMIC_PARTITIONS_SIZE := 5163188224 ## (BOARD_SUPER_PARTITION_SIZE - 4194304) 4MiB overhead
 
   ifneq ($(FOX_OVERRIDE_DEFAULT_FSTAB),true)
-  	TARGET_RECOVERY_FSTAB := $(SDM845_COMMON_PATH)/recovery/fstab_files/recovery-dynamic.fstab
-  	PRODUCT_COPY_FILES += $(SDM845_COMMON_PATH)/recovery/fstab_files/twrp-dynamic.flags:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/twrp.flags
+  	TARGET_RECOVERY_FSTAB := $(VARIANT_SRC_DIR)/fstab_files/recovery-dynamic.fstab
+  	PRODUCT_COPY_FILES += $(VARIANT_SRC_DIR)/fstab_files/twrp-dynamic.flags:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/twrp.flags
   endif
 
   # keymaster 4.0
@@ -239,9 +248,9 @@ endif
 
 # --------------------------------------------------
 # copy recovery/fstab_files/ from the common  directory (if it exists)
-ifneq ($(wildcard $(SDM845_COMMON_PATH)/recovery/fstab_files/.),)
+ifneq ($(wildcard $(VARIANT_SRC_DIR)/fstab_files/.),)
     PRODUCT_COPY_FILES += \
-        $(call find-copy-subdir-files,*,$(SDM845_COMMON_PATH)/recovery/fstab_files/*,$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/)
+        $(call find-copy-subdir-files,*,$(VARIANT_SRC_DIR)/fstab_files/*,$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/)
 endif
 
 # copy recovery/fstab_files/ from the device directory (if it exists)
