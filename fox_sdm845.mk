@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2022-2025 The OrangeFox Recovery Project
+# Copyright (C) 2022-2026 The OrangeFox Recovery Project
 #
 #	OrangeFox is free software: you can redistribute it and/or modify
 #	it under the terms of the GNU General Public License as published by
@@ -18,16 +18,16 @@
 #
 
 # screen settings
-OF_SCREEN_H := 2248
 OF_STATUS_H := 80
-OF_STATUS_INDENT_LEFT := 56
 OF_STATUS_INDENT_RIGHT := 48
 
 ifeq ($(PRODUCT_RELEASE_NAME),polaris)
-  OF_STATUS_INDENT_LEFT := 48
   OF_SCREEN_H := 2160
+  OF_STATUS_INDENT_LEFT := 48
   OF_OPTIONS_LIST_NUM := 6
 else
+  OF_SCREEN_H := 2244
+  OF_STATUS_INDENT_LEFT := 56
   OF_OPTIONS_LIST_NUM := 8
 endif
 
@@ -56,6 +56,9 @@ OF_UNBIND_SDCARD_F2FS := 1
 
 # don't save historic logs
 OF_DONT_KEEP_LOG_HISTORY := 1
+
+# FRP
+OF_ENABLE_FRP_ADDON := 1
 
 # dynamic partitions?
 ifeq ($(FOX_USE_DYNAMIC_PARTITIONS),1)
