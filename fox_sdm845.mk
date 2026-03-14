@@ -55,7 +55,9 @@ OF_BIND_MOUNT_SDCARD_ON_FORMAT := 1
 OF_UNBIND_SDCARD_F2FS := 1
 
 # don't save historic logs
-OF_DONT_KEEP_LOG_HISTORY := 1
+ifeq ($(FOX_BUILD_TYPE),Stable)
+   OF_DONT_KEEP_LOG_HISTORY := 1
+endif
 
 # FRP
 OF_ENABLE_FRP_ADDON := 1
