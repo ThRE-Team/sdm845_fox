@@ -32,10 +32,10 @@
 	export FOX_DELETE_AROMAFM=1
 	export OF_PATCH_AVB20=1
 	export FOX_USE_NANO_EDITOR=1
+	export FOX_USE_SPECIFIC_MAGISK_ZIP=~/Magisk/Magisk-v30.7.zip
 
     	# dynamic partitions ?
     	export FOX_USE_DYNAMIC_PARTITIONS=1; # make all builds dynamic
-
 	if [ "$FOX_USE_DYNAMIC_PARTITIONS" = "1"  ]; then
 		export FOX_VARIANT="unified"
 		export FOX_RECOVERY_SYSTEM_PARTITION="/dev/block/mapper/system"
