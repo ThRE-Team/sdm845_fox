@@ -48,5 +48,14 @@
 		export FOX_VANILLA_BUILD=1
 		export FOX_VARIANT="keymaster4"
 	fi
+
+	if [ "$FOX_KERNEL" = "4.19" ]; then
+		echo "Building for kernel v4.19 ..."
+		export FOX_VARIANT="kernel_419"
+		export FOX_USE_DATA_RECOVERY_FOR_SETTINGS=1
+	else
+		export FOX_SETTINGS_ROOT_DIRECTORY=/data/recovery
+		export FOX_MISCELLANEOUS_ROOT_DIRECTORY=/sdcard
+	fi
 #fi
 #
