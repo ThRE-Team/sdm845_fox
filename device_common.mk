@@ -118,7 +118,6 @@ PRODUCT_EXTRA_RECOVERY_KEYS += \
     vendor/recovery/security/miui
 
 # dynamic partitions?
-ifeq ($(FOX_USE_DYNAMIC_PARTITIONS),1)
   PRODUCT_USE_DYNAMIC_PARTITIONS := true
   PRODUCT_RETROFIT_DYNAMIC_PARTITIONS := true
 
@@ -138,9 +137,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.fastbootd.available=true \
 	ro.boot.dynamic_partitions=true \
 	ro.boot.dynamic_partitions_retrofit=true
-else
-	PRODUCT_PROPERTY_OVERRIDES += ro.orangefox.dynamic.build=false
-endif
 
 # keymaster-4.0 build
 ifeq ($(FOX_USE_KEYMASTER_4),1)

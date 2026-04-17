@@ -1,7 +1,7 @@
 #!/system/bin/sh
 #
 #	This file is part of the OrangeFox Recovery Project
-# 	Copyright (C) 2019-2024 The OrangeFox Recovery Project
+# 	Copyright (C) 2019-2026 The OrangeFox Recovery Project
 #
 #	OrangeFox is free software: you can redistribute it and/or modify
 #	it under the terms of the GNU General Public License as published by
@@ -93,27 +93,15 @@ process_fstab_files() {
   local TF="/system/etc/twrp.flags";
   local src_fstab="/system/etc/recovery-non-dynamic.fstab";
   local src_flags="/system/etc/twrp-non-dynamic.flags";
-  local dyn=$(is_dynamic_build);
 
   local D=$(rom_has_dynamic_partitions);
   if [ "$D" = "1" ]; then
-	if [ "$dyn" = "1" ]; then
-		TESTING_LOG "Dynamic ROM";
-		resetprop "fox_dynamic_device" "1";
-		return;
-	else # dynamic ROM on non-dynamic recovery!
-    		LOGMSG "Dynamic ROM on non-dynamic build. You *WILL* definitely have issues!";
-
-		# convert km3 flag to km4, in manifest.xml
-    		sed -i 's|@3.0::IKeymasterDevice/default|@4.0::IKeymasterDevice/default|g' $M;
-  		src_fstab="/system/etc/recovery-dynamic.fstab";
-  		src_flags="/system/etc/twrp-dynamic.flags";
-	fi
+	TESTING_LOG "Dynamic ROM";
+	resetprop "fox_dynamic_device" "1";
+	return;
   else
-	correct_the_keymaster_version;
-	[ "$dyn" != "1" ] && return; # non-dynamic ROM + non-dynamic recovery
-
 	# non-dynamic ROM on dynamic recovery
+	correct_the_keymaster_version;
 	TESTING_LOG "Non-dynamic ROM";
 	TESTING_LOG "Discarding the 'Unmap Super Devices' menu";
 	resetprop "fox_dynamic_device" "0";

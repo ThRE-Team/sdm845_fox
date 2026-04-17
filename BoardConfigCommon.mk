@@ -74,11 +74,7 @@ BOARD_KERNEL_CMDLINE := \
 	androidboot.boot_devices=soc/1d84000.ufshc \
 	androidboot.selinux=permissive
 
-# dynamic
-ifeq ($(FOX_USE_DYNAMIC_PARTITIONS),1)
-  BOARD_KERNEL_CMDLINE += androidboot.super_partition=system
-endif
-
+BOARD_KERNEL_CMDLINE += androidboot.super_partition=system
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 BOARD_KERNEL_PAGESIZE := 4096
@@ -190,7 +186,6 @@ ifeq ($(FOX_ENABLE_SDM845_FDE),true)
 endif
 
 # dynamic build? (now default)
-ifeq ($(FOX_USE_DYNAMIC_PARTITIONS),1)
   BOARD_SUPER_PARTITION_SIZE := 4294967296
   BOARD_SUPER_PARTITION_SIZE := 5167382528
   BOARD_SUPER_PARTITION_METADATA_DEVICE := system
@@ -227,33 +222,6 @@ ifeq ($(FOX_USE_DYNAMIC_PARTITIONS),1)
 #    PRODUCT_COPY_FILES += \
 #        $(call find-copy-subdir-files,*,$(DEVICE_PATH)/recovery/fstab_files/*,$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/)
 #  endif
-
-else
-  # we have static partitioning
-  BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3221225472
-  BOARD_VENDORIMAGE_PARTITION_SIZE := 788529152
-  BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
-  
-  # static with keymaster4
-  ifeq ($(FOX_USE_KEYMASTER_4),1)
-    PRODUCT_COPY_FILES += $(SDM845_COMMON_PATH)/recovery/keymaster4/manifest.xml:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/etc/vintf/manifest.xml
-    ifneq ($(FOX_OVERRIDE_DEFAULT_FSTAB),true)
-    	TARGET_RECOVERY_FSTAB := $(SDM845_COMMON_PATH)/recovery/fstab_files/recovery-km4.fstab
-    	PRODUCT_COPY_FILES += $(SDM845_COMMON_PATH)/recovery/fstab_files/twrp-km4.flags:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/twrp.flags
-    endif
-  else
-    BOARD_VENDORIMAGE_PARTITION_SIZE := 1073741824
-    BOARD_SYSTEM_EXTIMAGE_PARTITION_SIZE := 872415232
-    BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
-    TARGET_COPY_OUT_SYSTEM_EXT := system_ext
-    PRODUCT_COPY_FILES += $(SDM845_COMMON_PATH)/recovery/keymaster3/manifest.xml:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/etc/vintf/manifest.xml
-    ifneq ($(FOX_OVERRIDE_DEFAULT_FSTAB),true)
-    	TARGET_RECOVERY_FSTAB := $(SDM845_COMMON_PATH)/recovery/fstab_files/recovery-non-dynamic.fstab
-    	PRODUCT_COPY_FILES += $(SDM845_COMMON_PATH)/recovery/fstab_files/twrp-non-dynamic.flags:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/twrp.flags
-    endif
-  endif
- #
-endif
 
 # --------------------------------------------------
 # copy recovery/fstab_files/ from the common  directory (if it exists)

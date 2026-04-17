@@ -1,6 +1,6 @@
 #
 #	This file is part of the OrangeFox Recovery Project
-# 	Copyright (C) 2023-2024 The OrangeFox Recovery Project
+# 	Copyright (C) 2023-2026 The OrangeFox Recovery Project
 #
 #	OrangeFox is free software: you can redistribute it and/or modify
 #	it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #
 
 # set to 1 during testing, else set to 0
-debug_mode=0;
+debug_mode=1;
 
 # DEBUG mode?
 [ "$debug_mode" = "1" ] && set -o xtrace;
@@ -33,19 +33,6 @@ LOGMSG() {
 # test-phase log messages
 TESTING_LOG() {
 	[ "$debug_mode" = "1" ] && LOGMSG "$@";
-}
-
-# report whether we are running the dynamic variant of OrangeFox
-is_dynamic_build() {
-local b=$(getprop "ro.orangefox.dynamic.build");
-local d=$(getprop "ro.boot.dynamic_partitions");
-local e=$(getprop "ro.boot.dynamic_partitions_retrofit");
-local v=$(getprop "ro.orangefox.variant");
-	if  [ "$v" = "dynamic" -o "$v" = "unified" -o "$b" = "true" ] || [ "$d" = "true" -a "$e" = "true" ]; then
-		echo "1";
-	else
-		echo "0";
-	fi
 }
 
 # report whether the installed ROM has dynamic partitions

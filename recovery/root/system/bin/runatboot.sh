@@ -1,7 +1,7 @@
 #!/system/bin/sh
 #
 #	This file is part of the OrangeFox Recovery Project
-# 	Copyright (C) 2023-2024 The OrangeFox Recovery Project
+# 	Copyright (C) 2023-2026 The OrangeFox Recovery Project
 #
 #	OrangeFox is free software: you can redistribute it and/or modify
 #	it under the terms of the GNU General Public License as published by
@@ -26,13 +26,8 @@ source /system/bin/sdm845tools.sh
 
 # change the dynamic build into non-dynamic, on the fly, as far as is possible
 morph_into_non_dynamic() {
-local F;
-	# ensure that we're running the dynamic variant of OrangeFox
-	F=$(is_dynamic_build);
-	[ "$F" != "1" ] && return;
-
 	# confirm that the "Super" symlinks have been created
-	F=$(getprop "twrp.super.symlinks_created");
+	local F=$(getprop "twrp.super.symlinks_created");
 	[ "$F" = "true" ] && return; # the ROM is dynamic - no further processing is required
 
 	# if we get here, we are running a standard ROM on a retrofitted-dynamic recovery

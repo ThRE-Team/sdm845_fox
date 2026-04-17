@@ -63,7 +63,6 @@ endif
 OF_ENABLE_FRP_ADDON := 1
 
 # dynamic partitions?
-ifeq ($(FOX_USE_DYNAMIC_PARTITIONS),1)
    # build all the partition tools
    OF_ENABLE_ALL_PARTITION_TOOLS := 1
    #
@@ -72,13 +71,4 @@ ifeq ($(FOX_USE_DYNAMIC_PARTITIONS),1)
    OF_NO_ADDITIONAL_MIUI_PROPS_CHECK := 1
    OF_SUPPORT_ALL_BLOCK_OTA_UPDATES :=
    OF_FIX_OTA_UPDATE_MANUAL_FLASH_ERROR :=
-else
-   OF_QUICK_BACKUP_LIST := /boot;/data;/system_image;/vendor_image;
-   ifeq ($(FOX_USE_KEYMASTER_4),1)
-       OF_DISABLE_OTA_MENU := 1
-       OF_NO_ADDITIONAL_MIUI_PROPS_CHECK := 1
-       OF_SUPPORT_ALL_BLOCK_OTA_UPDATES :=
-       OF_FIX_OTA_UPDATE_MANUAL_FLASH_ERROR :=
-   endif
-endif
 #

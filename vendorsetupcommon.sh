@@ -35,13 +35,9 @@
 	export FOX_USE_SPECIFIC_MAGISK_ZIP=~/Magisk/Magisk-v30.7.zip
 
     	# dynamic partitions ?
-    	export FOX_USE_DYNAMIC_PARTITIONS=1; # make all builds dynamic
-	if [ "$FOX_USE_DYNAMIC_PARTITIONS" = "1"  ]; then
-		export FOX_VARIANT="unified"
-		export FOX_RECOVERY_SYSTEM_PARTITION="/dev/block/mapper/system"
-		export FOX_RECOVERY_VENDOR_PARTITION="/dev/block/mapper/vendor"
-		export FOX_VANILLA_BUILD=1
-	fi
+	export FOX_RECOVERY_SYSTEM_PARTITION="/dev/block/mapper/system"
+	export FOX_RECOVERY_VENDOR_PARTITION="/dev/block/mapper/vendor"
+	export FOX_VANILLA_BUILD=1
 
 	##export FOX_USE_KEYMASTER_4=1; # only used by PE
 	if [ "$FOX_USE_KEYMASTER_4" = "1" ]; then
