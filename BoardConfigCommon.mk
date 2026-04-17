@@ -239,4 +239,7 @@ endif
 
 TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
 TARGET_VENDOR_PROP += $(SDM845_COMMON_PATH)/vendor.prop
+
+# override what is stupidly causing "AB_OTA_UPDATER := true" (build/core/board_config.mk:946 (AB_OTA_UPDATER := true))
+AB_OTA_UPDATER := false
 #
