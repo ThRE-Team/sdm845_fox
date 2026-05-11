@@ -89,7 +89,7 @@ ifeq ($(FOX_KERNEL),4.19)
     KERNEL_STUFF_LOCATION := kernel_419
 else
     KERNEL_PATH := $(DEVICE_PATH)/prebuilt
-    KERNEL_STUFF_LOCATION := kernel_44
+    KERNEL_STUFF_LOCATION := kernel_49
 endif
 
 # variants
@@ -174,6 +174,9 @@ BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 
 # frame rate
 TW_FRAMERATE := 120
+
+# Python
+# TW_INCLUDE_PYTHON := true
 
 # FDE
 ifeq ($(FOX_ENABLE_SDM845_FDE),true)

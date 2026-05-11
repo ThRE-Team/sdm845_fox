@@ -1,6 +1,6 @@
 #!/system/bin/sh
 #
-# 	Script to be executed  after formatting the data partition (dipper)
+# 	Script to be executed  after formatting the data partition (beryllium)
 # 	Format the metadata partition
 #
 #	Copyright (C) 2023-2024 OrangeFox Recovery Project
@@ -26,11 +26,12 @@ format_metadata() {
 	local dyn=$(rom_has_dynamic_partitions);
 	[ "$dyn" != "1" ] && return;
 
-	local SUPPORTED_DEVICE="dipper,polaris"; # the supported device(s)
+	local SUPPORTED_DEVICE="beryllium"; # the supported device(s)
 	local META=/metadata;
 	local block_base="/dev/block/bootdevice/by-name";
 	local realmeta=$block_base"$META"; # real /metadata
 	local cust=$block_base"/cust"; # /cust mounted to /metadata
+	local logdump=$block_base"/logdump"; # /logdump mounted to /metadata
 	local PART="";
 
 	# do we even have /metadata?
@@ -49,7 +50,8 @@ format_metadata() {
 
 	# get the block device
 	PART=$(readlink -e $realmeta); # look first for a real metadata partition
-	[ -z "$PART" ] && PART=$(readlink -e $cust); # then look for metadata mount on /cust
+	#[ -z "$PART" ] && PART=$(readlink -e $cust); # then look for metadata mount on /cust
+	[ -z "$PART" ] && PART=$(readlink -e $logdump); # then look for metadata mount on /logdump
 	[ -z "$PART" ] && return; # no valid block - bale out
 
 	# now proceed

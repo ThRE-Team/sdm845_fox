@@ -1,17 +1,7 @@
-# Common 12.1 device tree for Xiaomi sdm845 devices (codenamed _dipper/polaris_)
+# Common 12.1 device tree for Xiaomi sdm845 devices (codenamed _beryllium_)
 
 ## Suitable for:
-* Xiaomi Mi 8 (_dipper_)
-* Xiaomi Mi Mix 2S (_polaris_)
-
-## May possibly be amended for:
 * POCO F1 (_beryllium_)
-* Xiaomi Mi 8 Pro (_equuleus_)
-* Xiaomi Mi 8 Explorer Edition (_ursa_)
-* Xiaomi Mi Mix 3 (_perseus_)
-
-## Examples:
-See the "fox_12.1" branches in the _dipper_ and _polaris_ device trees
 
 ---
 ## Copyright notice

@@ -30,3 +30,4 @@ odm                                          /odm                    ext4    ro,
 # [/cust is now a dynamic block in super]
 #/dev/block/by-name/cust                      /metadata               ext4    noatime,nosuid,nodev,discard,data=journal,commit=1                                                wait,formattable,first_stage_mount
 #
+/dev/block/zram0 none swap defaults zramsize=3221225472,max_comp_streams=8,zram_backingdev_size=512M

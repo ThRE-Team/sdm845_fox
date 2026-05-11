@@ -19,7 +19,7 @@
 # 	Please maintain this if you use this script or any part of it
 #
 
-# factory reset for dipper
+# factory reset for beryllium
 scriptname=$0;
 
 #set -o xtrace
@@ -38,9 +38,9 @@ format_dynamic() {
 	LOGMSG "Formatting for dynamic partitions (f2fs) ...";
 	make_f2fs -g android -f /dev/block/bootdevice/by-name/userdata;
 	make_f2fs -g android -f /dev/block/bootdevice/by-name/cache;
-	# /metadata, mounted on "cust"
-	mke2fs -t ext4 -b 4096 /dev/block/bootdevice/by-name/cust;
-	[ "$?" = "0" ] && e2fsdroid -e -S /file_contexts -a /metadata /dev/block/bootdevice/by-name/cust;
+	# /metadata, mounted on "logdump"
+	mke2fs -t ext4 -b 4096 /dev/block/bootdevice/by-name/logdump;
+	[ "$?" = "0" ] && e2fsdroid -e -S /file_contexts -a /metadata /dev/block/bootdevice/by-name/logdump;
 }
 
 process_partitions() {

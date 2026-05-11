@@ -28,7 +28,8 @@
 /vbmeta_image         emmc    /dev/block/bootdevice/by-name/vbmeta      	flags=display="Vbmeta";backup=1;flashimg=1
 
 # Removable storage
-/usb_otg       auto   /dev/block/sdg1                    /dev/block/sdg        	flags=fsflags=utf8;display="USB-Storage";storage;wipeingui;removable
+/usb_otg       auto   /dev/block/sdg1                    /dev/block/sdg        	flags=fsflags=utf8;display="USB-OTG";storage;wipeingui;removable
+/sdcard1          auto    /dev/block/mmcblk0p1                              /dev/block/mmcblk0   flags=display="MicroSD";storage;removable;andsec
 
 # metadata/cust [/cust is now a dynamic block in super]
 #/metadata      	ext4   /dev/block/by-name/cust                          	flags=display="Metadata/Cust"

@@ -13,3 +13,4 @@
 
 /dev/block/bootdevice/by-name/userdata       /data                   ext4    noatime,nosuid,nodev,barrier=0,noauto_da_alloc	latemount,wait,check,fileencryption=ice,quota
 #
+/dev/block/zram0 none swap defaults zramsize=3221225472,max_comp_streams=8,zram_backingdev_size=512M

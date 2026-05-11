@@ -73,11 +73,20 @@ TW_SCREEN_BLANK_ON_BOOT := true
 ifeq ($(PRODUCT_RELEASE_NAME),polaris)
    TW_MAX_BRIGHTNESS := 4095
    TW_DEFAULT_BRIGHTNESS := 640
-else
+endif
 # brightness for dipper kernels
+ifeq ($(PRODUCT_RELEASE_NAME),dipper)
    TW_MAX_BRIGHTNESS := 2047
    TW_DEFAULT_BRIGHTNESS := 511
 endif
+# brightness for beryllium kernels (Limitless Kernel)
+ifeq ($(PRODUCT_RELEASE_NAME),beryllium)
+   TW_MAX_BRIGHTNESS := 4095
+   TW_DEFAULT_BRIGHTNESS := 1024
+endif
+# brightness for other kernels
+TW_MAX_BRIGHTNESS ?= 255
+TW_DEFAULT_BRIGHTNESS ?= 150
 
 # Crypto
 ifneq ($(FOX_KERNEL),4.19)
