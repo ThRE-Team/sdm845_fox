@@ -18,7 +18,7 @@
 # 	Please maintain this if you use this script or any part of it
 #
 FDEVICE="beryllium"
-
+export FOX_MAINTAINER_PATCH_VERSION="1"
 export FOX_VARIANT="Enjoy"
 export FOX_BUILD_TYPE="Unofficial"
 export FOX_ENABLE_APP_MANAGER=1
