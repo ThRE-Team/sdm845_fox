@@ -1,0 +1,4 @@
+#!/sbin/sh
+# linex Project
+
+parted /dev/block/sda "$@"

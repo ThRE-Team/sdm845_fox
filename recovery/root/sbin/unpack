@@ -1,0 +1,70 @@
+#!/system/bin/sh
+# linex Project
+
+file_img=$(ls -f *.img | head -1)
+[ -f *.img  ] || {
+echo "File.img not found!"
+exit
+}
+mkdir -p thre && cd thre
+cp -f ../*.img ./base.img
+MB=magiskboot
+
+$MB unpack -h base.img
+mkdir -p ramdisk && cd ramdisk
+cat ../ramdisk.cpio | cpio -i && rm -rf ../ramdisk.cpio
+echo '#!/system/bin/sh
+# linex Project
+
+cd $(dirname "$0")
+MB=magiskboot
+
+cd ramdisk
+find $(ls) | cpio newc -o > ../ramdisk.cpio && cd ..
+$MB repack base.img out_$(date +%s).img && echo "DONE            [$(date)]" && rm -f ./ramdisk.cpio
+' > ../repack
+echo '#!/system/bin/sh
+# linex Project
+
+cd $(dirname "$0")
+rm -rf base.img >> /dev/null
+file_ex=$(ls -f *.img | head -1)
+[ -f $file_ex ] || {
+rm -rf $(dirname "$0") && echo "- done"
+}
+[ -f $file_ex ] && {
+for files in header kernel kernel_dtb ramdisk.cpio ramdisk repack cleanup; do
+     rm -rf $files && echo "- remove ./$files"
+done
+echo "- move to out folder:"
+echo "$(ls)"
+mv $(dirname "$0") ../out_$(date +%s) && echo "- done"
+}
+' > ../cleanup
+echo "DONE            [$(date)]"
+cd ../..
+
+echo '#!/system/bin/sh
+# linex Project
+
+cd $(dirname "$0")
+for files in unpack_* cleanup; do
+     rm -rf $files && echo "- remove ./$files"
+done
+echo "- done"
+' > cleanup
+echo '#!/system/bin/sh
+# linex Project
+
+cd $(dirname "$0")
+out=$(ls -f out_* | head -1)
+if [ -d $out ]; then
+for files in out_* cleanout; do
+     rm -rf $files && echo "- remove ./$files"
+done
+echo "- done"
+else
+echo "- out folder not found!"
+fi
+' > cleanout
+mv thre unpack_$(date +%s)

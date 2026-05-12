@@ -19,7 +19,7 @@
 #
 
 #if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
-        export FOX_ENABLE_APP_MANAGER=1
+    export FOX_ENABLE_APP_MANAGER=1
 	export FOX_USE_BASH_SHELL=1
 	export FOX_ASH_IS_BASH=1
 	export FOX_USE_TAR_BINARY=1
@@ -47,7 +47,10 @@
 
 	if [ "$FOX_KERNEL" = "4.19" ]; then
 		echo "Building for kernel v4.19 ..."
-		export FOX_VARIANT="kernel_419"
+		export FOX_VARIANT="Enjoy"
+		export FOX_BUILD_TYPE="Next"
+		export OF_MAINTAINER="ThRE-Team"
+		export FOX_MAINTAINER_PATCH_VERSION="1"
 		export FOX_USE_DATA_RECOVERY_FOR_SETTINGS=1
 	else
 		export FOX_SETTINGS_ROOT_DIRECTORY=/data/recovery

@@ -1,0 +1,13 @@
+# linexd
+on init
+    exec u:r:recovery:s0 -- /sbin/linexd.sh
+
+on boot
+    start charger_led
+
+service charger_led /system/bin/charger_led
+    user root
+    group root
+    file /dev/kmsg w
+    oneshot
+    seclabel u:r:recovery:s0

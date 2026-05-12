@@ -1,0 +1,7 @@
+#!/sbin/sh
+# linex Project
+
+target=/system_other/$1
+mkdir -p /system_other
+mkdir -p $target
+mount /dev/block/$1 $target

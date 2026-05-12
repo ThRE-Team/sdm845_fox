@@ -1,0 +1,7 @@
+#!/system/bin/sh
+# linex Project
+
+cd ramdisk
+find $(ls) | cpio newc -o > ../ramdisk.cpio && cd ..
+magiskboot repack base.img out_$(date +%s).img && echo "DONE            [$(date)]" && rm -f ./ramdisk.cpio
+
