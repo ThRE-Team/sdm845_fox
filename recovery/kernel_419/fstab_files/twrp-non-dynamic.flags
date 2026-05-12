@@ -2,8 +2,8 @@
 /cache         ext4   /dev/block/bootdevice/by-name/cache
 /boot          emmc   /dev/block/bootdevice/by-name/boot
 
-/system_image  emmc   /dev/block/bootdevice/by-name/system			flags=display="System_image";backup=1;flashimg=1
-/vendor_image  emmc   /dev/block/bootdevice/by-name/vendor			flags=display="Vendor_image";backup=1;flashimg=1
+/system_image  emmc   /dev/block/bootdevice/by-name/system			flags=display="System Image";backup=1;flashimg=1
+/vendor_image  emmc   /dev/block/bootdevice/by-name/vendor			flags=display="Vendor Image";backup=1;flashimg=1
 /system_root   ext4   /dev/block/bootdevice/by-name/system                    	flags=display="System";backup=0;wipeingui
 
 /storage       ext4   /data/media/0                  		     		flags=display="Internal Storage";usermrf;backup=1;fsflags="bind,utf8";removable
@@ -13,8 +13,8 @@
 
 /data          ext4   /dev/block/bootdevice/by-name/userdata                    flags=encryptable=footer;length=-16384;fileencryption=ice:aes-256-cts:aes-256-heh
 /firmware      vfat   /dev/block/bootdevice/by-name/modem                       flags=display="Firmware";mounttodecrypt
-/system_ext     ext4  /dev/block/bootdevice/by-name/cust                        flags=backup=0;display="System_Ext";wipeingui
-/system_ext_image emmc /dev/block/bootdevice/by-name/cust                       flags=display="System_Ext_Image";backup=1;flashimg=1
+/system_ext     ext4  /dev/block/bootdevice/by-name/cust                        flags=backup=0;display="System-Ext";wipeingui
+/system_ext_image emmc /dev/block/bootdevice/by-name/cust                       flags=display="System-Ext Image";backup=1;flashimg=1
 
 /persist_image emmc   /dev/block/bootdevice/by-name/persist                 	flags=display="Persist_Image";backup=1;flashimg=1
 /persist       ext4   /dev/block/bootdevice/by-name/persist                   	flags=display="Persist";backup=0
@@ -34,4 +34,4 @@
 # Removable storage
 /usb_otg 	auto   /dev/block/sdg1                    /dev/block/sdg         flags=fsflags=utf8;display="USB-OTG";storage;wipeingui;removable
 /sdcard1          auto    /dev/block/mmcblk0p1                              /dev/block/mmcblk0   flags=display="MicroSD";storage;removable;andsec
-#
+/userdata_image   emmc    /dev/block/bootdevice/by-name/userdata                                 flags=display="Userdata";flashimg=1
