@@ -31,7 +31,7 @@ export BUILD_HOSTNAME="ThRE"
 fetch_sdm845_common_repo() {
 	local URL=https://github.com/ThRE-Team/sdm845_fox.git;
 	local common=device/xiaomi/sdm845-common;
-	local branch=fox_16.0_common_beryllium;
+	local branch=enjoy_common;
 
 	if [ ! -d $common ]; then
 		echo "Cloning $URL ... to $common";
