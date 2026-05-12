@@ -20,11 +20,13 @@
 # Inherit the common sdm845 BoardConfig
 include device/xiaomi/sdm845-common/BoardConfigCommon.mk
 
-# Decrypt A16
+# Decrypt & Enable Tap2Wake
 ifeq ($(FOX_KERNEL),4.19)
     BOARD_USES_QCOM_FBE_DECRYPTION := true
     BOARD_USES_QCOM_ICE := true
     TW_INCLUDE_CRYPTO := true
     TW_INCLUDE_FBE_METADATA_DECRYPT := true
     BOARD_USES_METADATA_PARTITION := true
+    TW_NO_SCREEN_BLANK := true
+    TW_INPUT_BLACKLIST := "hbtp_vm"
 endif
