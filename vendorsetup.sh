@@ -27,6 +27,7 @@ export OF_MAINTAINER="ThRE-Team"
 export OF_USE_HEXDUMP=1
 export BUILD_USERNAME="1213F3"
 export BUILD_HOSTNAME="ThRE"
+export FOX_MAINTAINER_PATCH_VERSION="2"
 
 fetch_sdm845_common_repo() {
 	local URL=https://github.com/ThRE-Team/sdm845_fox.git;
@@ -35,6 +36,19 @@ fetch_sdm845_common_repo() {
 
 	if [ ! -d $common ]; then
 		echo "Cloning $URL ... to $common";
+		git clone $URL -b $branch $common;
+	else
+		echo "Device common repository: \"$common\" found ...";
+	fi
+}
+
+fetch_enjoy_common_repo() {
+	local URL=https://github.com/ThRE-Team/sdm845_fox.git;
+	local common=device/xiaomi/sdm845-common;
+	local branch=enjoy_common;
+
+	if [ ! -d $common ]; then
+		echo "Cloning Enjoy Common: $URL ... to $common";
 		git clone $URL -b $branch $common;
 	else
 		echo "Device common repository: \"$common\" found ...";
@@ -59,7 +73,12 @@ fi
 
 if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	# clone the common repo if necessary
-	fetch_sdm845_common_repo;
+	
+	if [ "$FOX_VARIANT" = "Enjoy" ]; then
+		fetch_enjoy_common_repo;
+	else
+		fetch_sdm845_common_repo;
+	fi
 
 	# pull in the common vendorsetup.sh
 	source device/xiaomi/sdm845-common/vendorsetupcommon.sh

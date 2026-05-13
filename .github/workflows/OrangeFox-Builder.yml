@@ -51,6 +51,14 @@ on:
         type: boolean
         required: true
         default: true
+      RELEASE_TYPE:
+        description: 'Choose upload destination'
+        required: true
+        default: 'artifact'
+        type: choice
+        options:
+        - artifact
+        - release
 
 jobs:
   build:
@@ -83,6 +91,8 @@ jobs:
       
     - name: Build Environment
       run: |
+        sudo timedatectl set-timezone Asia/Jakarta
+        echo "build started $(date)"
         sudo apt update
         sudo apt -y upgrade
         git clone https://gitlab.com/OrangeFox/misc/scripts
@@ -186,8 +196,19 @@ jobs:
         fi
       continue-on-error: true
 
+    - name: Upload to Artifact
+      if: github.event.inputs.RELEASE_TYPE == 'artifact' && env.CHECK_IMG_IS_OK == 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: OrangeFox-${{ github.event.inputs.DEVICE_NAME }}-${{ env.BUILD_DATE }}
+        path: |
+          ${{ env.FILE_PATH }}/${{ env.RECOVERY_TYPE }}.img
+          ${{ env.FILE_PATH }}/${{ env.RECOVERY_TYPE }}.tar
+          ${{ env.FILE_PATH }}/recovery-installer.zip
+          ${{ env.FILE_PATH }}/OrangeFox*.zip
+
     - name: Upload to Release
-      if: env.CHECK_IMG_IS_OK == 'true'
+      if: github.event.inputs.RELEASE_TYPE == 'release' && env.CHECK_IMG_IS_OK == 'true'
       uses: softprops/action-gh-release@v1
       with:
         files: |
@@ -203,7 +224,7 @@ jobs:
           Commit: Most recent [commit](${{ github.event.inputs.DEVICE_TREE }}/commit/${{ env.COMMIT_ID }}) during building.
           
     - name: Release ramdisk-recovery
-      if: env.CHECK_IMG_IS_OK == 'true'
+      if: github.event.inputs.RELEASE_TYPE == 'release' && env.CHECK_IMG_IS_OK == 'true'
       uses: softprops/action-gh-release@4634c16e79c963813287e889244c50009e7f0981
       with:
         files: |
