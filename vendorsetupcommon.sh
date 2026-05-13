@@ -50,7 +50,7 @@
 		export FOX_VARIANT="Enjoy"
 		export FOX_BUILD_TYPE="Next"
 		export OF_MAINTAINER="ThRE-Team"
-		export FOX_MAINTAINER_PATCH_VERSION="1"
+		export FOX_MAINTAINER_PATCH_VERSION="2"
 		export FOX_USE_DATA_RECOVERY_FOR_SETTINGS=1
 	else
 		export FOX_SETTINGS_ROOT_DIRECTORY=/data/recovery

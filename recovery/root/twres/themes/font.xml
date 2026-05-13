@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<recovery>
+	<resources>
+		<font name="status" filename="ReemKufi.ttf" size="40"/>
+		<font name="bigfont" filename="ReemKufi.ttf" size="48"/>
+		<font name="body1" filename="ReemKufi.ttf" size="42"/>
+		<font name="body2" filename="ReemKufi.ttf" size="42"/>
+		<font name="subhead" filename="ReemKufi.ttf" size="52"/>
+		<font name="title" filename="ReemKufi.ttf" size="60"/>
+		<font name="mainbutton" filename="ReemKufi.ttf" size="64"/>
+		<font name="button" filename="ReemKufi.ttf" size="41"/>
+		<font name="menu" filename="ReemKufi.ttf" size="44"/>
+		<font name="input_fail" filename="ReemKufi.ttf" size="32"/>
+		<font name="splash" filename="ReemKufi.ttf" size="47"/>
+
+		<font name="font_l" filename="ReemKufi.ttf" size="52"/>
+		<font name="font_m" filename="ReemKufi.ttf" size="42"/>
+		<font name="font_s" filename="ReemKufi.ttf" size="36"/>
+		<font name="font_b" filename="ReemKufi.ttf" size="200"/>
+
+		<font name="keylabel" filename="ReemKufi.ttf" size="64"/>
+		<font name="keylabel-bold" filename="ReemKufi.ttf" size="46"/>
+		<font name="keylabel-num" filename="ReemKufi.ttf" size="72"/>
+		<font name="keylabel-small" filename="ReemKufi.ttf" size="46"/>
+		<font name="keylabel-longpress" filename="ReemKufi.ttf" size="32"/>
+		
+		<font name="Secondary" filename="ReemKufi.ttf" size="42"/>
+		<font name="Secondary-navbar" filename="ReemKufi.ttf" size="36"/>
+		<font name="Secondary-title" filename="ReemKufi.ttf" size="58"/>
+		<font name="caption" filename="ReemKufi.ttf" size="36"/>
+		
+		<font name="clock" filename="ReemKufi.ttf" size="210"/>
+		<font name="info" filename="ReemKufi.ttf" size="50"/>
+	</resources>
+	
+	<variables>
+		<variable name="theme_font" value="ReemKufi"/>
+		<variable name="theme_sec_font" value="ReemKufi"/>
+		<variable name="theme_font_size" value="n"/>
+		<variable name="theme_font_weight" value="2"/>
+	</variables>
+</recovery>

@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<recovery>
+
+	<mousecursor>
+		<placement w="0" h="0"/>
+		<background color="#FFFFFF00" resource="cursor"/>
+		<speed multiplier="2.5"/>
+	</mousecursor>
+
+	<resources>
+        <!-- Mouse cursor -->
+        <image name="cursor" filename="Default/Other/cursor" retainaspect="1"/>
+
+        <!-- TODO: create variables -->
+		<shape name="btn_raised" w="%btn_w%" h="%btn_h%" radius="-1" color="%neutral_light%" />
+		<shape name="btn_raised_hl" w="%btn_w%" h="%btn_h%" radius="-1" color="%accent%" />
+		<shape name="btn_flat_qw" w="%btn_half_w%" h="%btn_h%" radius="-1" stroke="3" color="#666666"/>
+
+		<shape name="btn_raised_warn" w="%btn_w%" h="%btn_h%" radius="-1" color="#E51C23" />
+		<shape name="nav_empty" w="200" h="168" color="#00000000"/>
+		<shape name="nav_hl" color="#B8B8B842" radius="36" w="200" h="168"/>
+		<shape name="nb_gesture_line" w="210" h="7" color="%text%" radius="-1" />
+		<shape name="search_bar_bg" color="%cards_bg%" radius="36" w="984" h="260" />
+		<shape name="nav_pill" color="%accent%" radius="-1" w="%np_pill_w%" h="%np_pill_h%" />
+
+		<shape name="power_card" color="%cards_bg%" radius="32" w="324" h="294" />
+
+		<shape name="nb_empty" color="#00000000" w="318" h="144" />
+		<shape name="nb_hl" color="#B8B8B842" radius="-1" w="318" h="144" />
+		
+		<shape name="nav_bg" color="%cards_bg%" radius="36" w="%nav_panel_w%" h="%nav_panel_h%" />
+
+		<!-- Main switch background -->
+		<shape name="main_switch_card_active" color="%accent%" radius="48" w="1000" h="168"/>
+		<shape name="main_switch_card_not_active" color="%disabled_bg%" radius="48" w="1000" h="168"/>
+
+		<!-- Current maintainer chip -->
+		<shape name="maintainer_chip_bg" color="%accent%" radius="32" w="270" h="70"/>
+
+		<!-- FAB -->
+		<shape name="fab" color="%accent%" radius="-1" w="168" h="168" />
+		<shape name="fab_hl" color="%cards_bg%" radius="-1" w="168" h="168" />
+		<shape name="tab_hl" color="%accent%" radius="-1" w="312" h="8" />
+		
+		<image name="actionbar_btn" filename="Default/ActionBar/actionbar_btn" retainaspect="1"/>
+		<image name="actionbar_btn_hl" filename="Default/ActionBar/actionbar_btn_hl" retainaspect="1"/>
+		
+		<image name="fab_shadow" filename="Default/FAB/fab_shadow" retainaspect="1"/>
+		
+		<!-- Fonts Preview -->
+		<font name="font1" filename="Roboto-Regular.ttf" size="42"/>
+		<font name="font2" filename="RobotoSlab.ttf" size="42"/>
+		<font name="font3" filename="GoogleSans-Regular.ttf" size="42"/>
+		<font name="font4" filename="EuclidFlex-Regular.ttf" size="42"/>
+		<font name="font5" filename="FiraCode-Regular.ttf" size="42"/>
+		<font name="font6" filename="Exo2-Regular.ttf" size="42"/>
+		<font name="font7" filename="InterDisplay-Regular.ttf" size="42"/>
+		<font name="font8" filename="Chococooky.ttf" size="42"/>
+		<font name="font9" filename="MILanPro-Regular.ttf" size="42"/>
+		<font name="font10" filename="ReemKufi.ttf" size="42"/>
+		<font name="font11" filename="Linotte.ttf" size="42"/>
+		<font name="font12" filename="Ubuntu.ttf" size="42"/>
+		<font name="font13" filename="Ablax.ttf" size="42"/>
+		<font name="font14" filename="Evo.ttf" size="42"/>
+		<font name="font15" filename="ThRE.ttf" size="42"/>
+		
+		<font name="orangefont" filename="InterDisplay-Regular.ttf" size="42"/>
+		<font name="about" filename="InterDisplay-Medium.ttf" size="58"/>
+
+		<!-- Splash Preview -->
+		<image name="splash_user" filename="Splash/user" retainaspect="1"/>
+		<image name="splash_bg" filename="Splash/original" retainaspect="1"/>
+		<image name="splash_logo_d" filename="SVG/Logos/logo_d.svg" retainaspect="1" scale="2.0"/>
+		<image name="splash_logo_o" filename="SVG/Logos/logo_o.svg" retainaspect="1" scale="2.0"/>
+		<image name="splash_logo_w" filename="SVG/Logos/logo_w.svg" retainaspect="1" scale="2.0"/>
+		
+		<!-- Workshop -->
+		<image name="style_black" filename="SVG/Workshop/selector.svg" retainaspect="1" tint="#000000"/>
+		<image name="style_gray" filename="SVG/Workshop/selector.svg" retainaspect="1" tint="#202124"/>
+		<image name="style_light" filename="SVG/Workshop/selector.svg" retainaspect="1" tint="#FFFFFF"/>
+		<!-- Brand themes-->
+		<image name="style_cream" filename="SVG/Workshop/selector.svg" retainaspect="1" tint="#F9F1E7"/>
+		<image name="style_dark" filename="SVG/Workshop/selector.svg" retainaspect="1" tint="#271F17"/>
+
+		<image name="style_apply" filename="SVG/Workshop/apply.svg" retainaspect="1" tint="#FFFFFF"/>
+		<image name="style_apply_black" filename="SVG/Workshop/apply.svg" retainaspect="1" tint="#000000"/>
+		<image name="style_shadow" filename="Default/Workshop/style_shadow" retainaspect="1"/>
+	
+		<font name="fixed" filename="FiraCode-Regular.ttf" size="29"/>
+		<!-- Battery -->
+		<image name="battery15" filename="Default/Battery/battery15" retainaspect="1"/>
+		<image name="battery5" filename="Default/Battery/battery5" retainaspect="1"/>
+		<image name="battery_low_p" filename="Default/Battery/battery_low_p" retainaspect="1"/>
+
+		<!-- Icons -->
+		<image name="bs_btn_set_global" filename="Default/Icons/bs_btn_set_global" retainaspect="1"/>
+		<image name="bs_btn_set_regional" filename="Default/Icons/bs_btn_set_regional" retainaspect="1"/>
+		<image name="bs_btn_set_about" filename="Default/Icons/bs_btn_set_about" retainaspect="1"/>
+		<image name="bs_btn_set_custom" filename="Default/Icons/bs_btn_set_custom" retainaspect="1"/>
+		<image name="bs_btn_set_vibro" filename="Default/Icons/bs_btn_set_vibro" retainaspect="1"/>
+		<image name="bs_btn_set_screen" filename="Default/Icons/bs_btn_set_screen" retainaspect="1"/>
+		<image name="bs_btn_set_ota" filename="Default/Icons/bs_btn_set_ota" retainaspect="1"/>
+		<image name="bs_btn_set_secure" filename="Default/Icons/bs_btn_set_secure" retainaspect="1"/>
+		<image name="bs_btn_restore" filename="Default/Icons/bs_btn_restore" retainaspect="1"/>
+
+		<!-- Info -->
+		<image name="icon_warning" filename="Default/Info/icon_warning" retainaspect="1"/>
+		<image name="db_hl" filename="Default/Dialog/db_hl"/>
+		<image name="db_empty" filename="Default/Dialog/db"/>
+		
+		<!-- Keyboard -->
+		<image name="backspace" filename="Default/Keyboard/backspace" retainaspect="1"/>
+		<image name="shift" filename="Default/Keyboard/shift" retainaspect="1"/>
+		<image name="shift_fill" filename="Default/Keyboard/shift_fill" retainaspect="1"/>
+		<image name="space" filename="Default/Keyboard/space" retainaspect="1"/>
+		<image name="kb_arrow_left" filename="Default/Keyboard/kb_arrow_left" retainaspect="1"/>
+		<image name="kb_arrow_right" filename="Default/Keyboard/kb_arrow_right" retainaspect="1"/>
+		<image name="kb_arrow_up" filename="Default/Keyboard/kb_arrow_up" retainaspect="1"/>
+		<image name="kb_arrow_down" filename="Default/Keyboard/kb_arrow_down" retainaspect="1"/>
+
+		<!-- Other -->
+		<image name="actionbar_show" filename="Default/Other/show" retainaspect="1"/>
+		<image name="actionbar_clear" filename="Default/Other/actionbar_clear" retainaspect="1"/>
+		<image name="empty_folder" filename="Default/FullscreenIcons/empty_folder" retainaspect="1"/>
+		<image name="fox_lock" filename="Default/FullscreenIcons/fox_lock" retainaspect="1"/>
+		<image name="empty_box" filename="Default/FullscreenIcons/box" retainaspect="1"/>
+		
+		<!-- About -->
+		<image name="author_fd" filename="Default/About/author_fd" retainaspect="1"/>
+		<image name="author_yan" filename="Default/About/author_yan" retainaspect="1"/>
+		<image name="author_jabba" filename="Default/About/author_jabba" retainaspect="1"/>
+		<image name="maintainer_img" filename="Default/About/maintainer" retainaspect="1"/>
+	</resources>
+</recovery>
