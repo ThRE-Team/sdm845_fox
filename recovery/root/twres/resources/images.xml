@@ -64,8 +64,8 @@
 		<font name="font14" filename="Evo.ttf" size="42"/>
 		<font name="font15" filename="ThRE.ttf" size="42"/>
 		
-		<font name="orangefont" filename="InterDisplay-Regular.ttf" size="42"/>
-		<font name="about" filename="InterDisplay-Medium.ttf" size="58"/>
+		<font name="orangefont" filename="ReemKufi.ttf" size="42"/>
+		<font name="about" filename="ReemKufi.ttf" size="58"/>
 
 		<!-- Splash Preview -->
 		<image name="splash_user" filename="Splash/user" retainaspect="1"/>
