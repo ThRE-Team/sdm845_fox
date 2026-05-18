@@ -19,10 +19,10 @@
 #
 FDEVICE="beryllium"
 
-export FOX_VARIANT="Enjoy"
+export FOX_VARIANT="Legacy"
 export FOX_BUILD_TYPE="Unofficial"
 export FOX_ENABLE_APP_MANAGER=1
-export FOX_KERNEL=4.19
+export FOX_KERNEL=4.9
 export OF_MAINTAINER="ThRE-Team"
 export OF_USE_HEXDUMP=1
 export BUILD_USERNAME="1213F3"
@@ -74,7 +74,7 @@ fi
 if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	# clone the common repo if necessary
 	
-	if [ "$FOX_VARIANT" = "Enjoy" ]; then
+	if [[ "$FOX_VARIANT" = "Enjoy" || "$FOX_VARIANT" = "Legacy" ]]; then
 		fetch_enjoy_common_repo;
 	else
 		fetch_sdm845_common_repo;
