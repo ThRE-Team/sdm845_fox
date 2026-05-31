@@ -19,7 +19,7 @@ on:
       DEVICE_TREE_BRANCH:
         description: 'Custom Recovery Tree Branch'
         required: true
-        default: 'fox_12.0_3'
+        default: 'fox_12.0_4'
       DEVICE_PATH:
         description: 'Specify your device path.'
         required: true
@@ -50,7 +50,7 @@ on:
         description: 'Include recovery installer zip'
         type: boolean
         required: true
-        default: true
+        default: false
       RELEASE_TYPE:
         description: 'Choose upload destination'
         required: true

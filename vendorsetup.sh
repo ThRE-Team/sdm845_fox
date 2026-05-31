@@ -27,7 +27,7 @@ export OF_MAINTAINER="ThRE-Team"
 export OF_USE_HEXDUMP=1
 export BUILD_USERNAME="1213F3"
 export BUILD_HOSTNAME="ThRE"
-export FOX_MAINTAINER_PATCH_VERSION="3"
+export FOX_MAINTAINER_PATCH_VERSION="4"
 
 fetch_sdm845_common_repo() {
 	local URL=https://github.com/ThRE-Team/sdm845_fox.git;
