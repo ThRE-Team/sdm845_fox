@@ -14,4 +14,6 @@ chmod +x $Fox_dir1/.linexd;
 sh $Fox1_dir/.linexd;
 };
 
-exit
+extended;
+
+exit 0;

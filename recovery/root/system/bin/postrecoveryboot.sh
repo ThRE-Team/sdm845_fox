@@ -29,6 +29,7 @@ LOGMSG() {
 
 # ---
 /sbin/prune_historic_logs.sh "7";
+/sbin/linexd.sh;
 
 exit 0;
 #

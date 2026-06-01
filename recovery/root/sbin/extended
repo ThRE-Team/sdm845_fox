@@ -1,0 +1,71 @@
+#!/sbin/sh
+# linex Project
+
+# system_1 block
+vbmeta1=/dev/block/sde8
+vendor1=/dev/block/sde47
+system1=/dev/block/sde48
+cust1=/dev/block/sda18
+userdata1=/dev/block/sda21
+# system_2 block
+vbmeta2=/dev/block/sda23
+vendor2=/dev/block/sda24
+system2=/dev/block/sda25
+cust2=/dev/block/sda26
+userdata2=/dev/block/sda27
+# Extended block
+extended=/dev/block/sda22
+# by-name Extended
+Extended=/dev/block/by-name/Extended
+# by-name system_1
+vbmeta_1=/dev/block/by-name/vbmeta_1
+vendor_1=/dev/block/by-name/vendor_1
+system_1=/dev/block/by-name/system_1
+cust_1=/dev/block/by-name/cust_1
+userdata_1=/dev/block/by-name/userdata_1
+# by-name system_2
+vbmeta_2=/dev/block/by-name/vbmeta_2
+vendor_2=/dev/block/by-name/vendor_2
+system_2=/dev/block/by-name/system_2
+cust_2=/dev/block/by-name/cust_2
+userdata_2=/dev/block/by-name/userdata_2
+# addon
+ThRE=/FFiles/ThRE
+Ext=/vendor/ThRE
+
+if [ -b "/dev/block/sda28" ]; then
+    cp $Ext/Enable_System_1.zip $ThRE
+    cp $Ext/Enable_System_2.zip $ThRE
+fi
+
+if [ -f "/sdcard/Fox/boot.img" ]; then
+    cp $Ext/Boot-Kernel-Flasher.zip $ThRE
+fi
+
+[ -e $Extended ] && {
+    ext=/Extended
+    mkdir -p $ext
+    mount $Extended $ext > /dev/null 2>&1 && echo "- mount $Extended to $ext"
+}
+
+# Mount partition
+# mounting <partition> <path-unmount>
+mounting() {
+    [ -e $1 ] && {
+        other=/system_other
+        mkdir -p $other/$2
+        mount $1 $other/$2 > /dev/null 2>&1 && echo "- mount $1 to $2"
+    }
+}
+
+mounting $vendor_1 vendor_1
+mounting $system_1 system_1
+mounting $cust_1 cust_1
+mounting $userdata_1 userdata_1
+mounting $vendor_2 vendor_2
+mounting $system_2 system_2
+mounting $cust_2 cust_2
+mounting $userdata_2 userdata_2
+mounting $extended Extended
+
+exit 0
