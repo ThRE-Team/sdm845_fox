@@ -34,8 +34,8 @@
 	export FOX_USE_NANO_EDITOR=1
 	export FOX_USE_SPECIFIC_MAGISK_ZIP=~/Magisk/Magisk-v30.7.zip
 	export OF_MAINTAINER="ThRE-Team"
-	export FOX_MAINTAINER_PATCH_VERSION="4"
-	
+	export FOX_MAINTAINER_PATCH_VERSION="5"
+	curl -Lo ~/Magisk/Magisk-v30.7.zip --create-dirs https://github.com/topjohnwu/Magisk/releases/download/v30.7/Magisk-v30.7.apk
 
     	# dynamic partitions ?
 	export FOX_RECOVERY_SYSTEM_PARTITION="/dev/block/mapper/system"
@@ -50,18 +50,17 @@
 
 	if [ "$FOX_KERNEL" = "4.19" ]; then
 		echo "Building for kernel v4.19 ..."
-		export FOX_VARIANT="Enjoy"
-		export FOX_BUILD_TYPE="Next"
 		#export FOX_USE_DATA_RECOVERY_FOR_SETTINGS=1
 		export FOX_SETTINGS_ROOT_DIRECTORY=/data/recovery
 		export FOX_MISCELLANEOUS_ROOT_DIRECTORY=/sdcard
 	else
 		echo "Building for kernel v4.9 ..."
-		export FOX_VARIANT="Legacy"
-		export FOX_BUILD_TYPE="Next"
-		export OF_MAINTAINER="ThRE-Team"
 		export FOX_SETTINGS_ROOT_DIRECTORY=/data/recovery
 		export FOX_MISCELLANEOUS_ROOT_DIRECTORY=/sdcard
 	fi
+	
+	echo "FOX_KERNEL: k$FOX_KERNEL"
+	echo "FOX_VARIANT: $FOX_VARIANT"
+	echo "FOX_BUILD_TYPE: $FOX_BUILD_TYPE"
 #fi
 #
