@@ -19,7 +19,7 @@ on:
       DEVICE_TREE_BRANCH:
         description: 'Custom Recovery Tree Branch'
         required: true
-        default: 'fox_12.0_4'
+        default: 'fox_12.0_5'
       DEVICE_PATH:
         description: 'Specify your device path.'
         required: true
@@ -28,6 +28,22 @@ on:
         description: 'Specify your Device Codename.'
         required: true
         default: 'beryllium'
+      KERNEL_VERSION:
+        description: 'Choose kernel version'
+        required: true
+        default: '4.9'
+        type: choice
+        options:
+        - '4.9'
+        - '4.19'
+      BUILD_TYPE:
+        description: 'Specify your Build Type'
+        required: true
+        default: 'Next'
+        type: choice
+        options:
+        - 'Next'
+        - 'Unofficial'
       BUILD_TARGET:
         description: 'Specify your Build Target'
         required: true
@@ -126,6 +142,9 @@ jobs:
         if_false: lunch omni_${{ github.event.inputs.DEVICE_NAME }}-eng && make clean && mka ${{ github.event.inputs.BUILD_TARGET }}image
       
     - name: Building OrangeFox
+      env:
+        FOX_KERNEL: ${{ github.event.inputs.KERNEL_VERSION }}
+        FOX_BUILD_TYPE: ${{ github.event.inputs.BUILD_TYPE }}
       run: |
         cd ${GITHUB_WORKSPACE}/OrangeFox/fox_${{ github.event.inputs.MANIFEST_BRANCH }}
         set +e
@@ -216,13 +235,15 @@ jobs:
           ${{ env.FILE_PATH }}/${{ env.RECOVERY_TYPE }}.tar
           ${{ env.FILE_PATH }}/recovery-installer.zip
           ${{ env.FILE_PATH }}/OrangeFox*.zip
-        name: Unofficial OrangeFox for ${{ github.event.inputs.DEVICE_NAME }} // ${{ env.BUILD_DATE }}
+        name: OrangeFox ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ${{ github.event.inputs.BUILD_TYPE }} || ${{ github.event.inputs.DEVICE_NAME }}
         tag_name: ${{ github.run_id }}
         body: |
-          Build: ${{ github.event.inputs.MANIFEST_BRANCH }}
+          Target: ${{ github.event.inputs.BUILD_TARGET }}.img
+          Build: ${{ github.event.inputs.MANIFEST_BRANCH }} || K${{ github.event.inputs.KERNEL_VERSION }}
           Device: [Device Tree/Branch](${{ github.event.inputs.DEVICE_TREE }}/tree/${{ github.event.inputs.DEVICE_TREE_BRANCH }})
           Commit: Most recent [commit](${{ github.event.inputs.DEVICE_TREE }}/commit/${{ env.COMMIT_ID }}) during building.
-          
+          MD5 (img): ${{ env.MD5_IMG }}
+
     - name: Release ramdisk-recovery
       if: github.event.inputs.RELEASE_TYPE == 'release' && env.CHECK_IMG_IS_OK == 'true'
       uses: softprops/action-gh-release@4634c16e79c963813287e889244c50009e7f0981
@@ -230,15 +251,15 @@ jobs:
         files: |
           ${{ env.FILE_PATH }}/obj/PACKAGING/vendor_ramdisk_fragments_intermediates/recovery.*
           ${{ env.FILE_PATH }}/ramdisk-recovery.*
-        name: Unofficial OrangeFox for ${{ github.event.inputs.DEVICE_NAME }} // ${{ env.BUILD_DATE }}
+        name: OrangeFox ${{ github.event.inputs.DEVICE_TREE_BRANCH }} ${{ github.event.inputs.BUILD_TYPE }} || ${{ github.event.inputs.DEVICE_NAME }}
         tag_name: ${{ github.run_id }}
         body: |
           Target: ${{ env.RECOVERY_TYPE }}.img
-          Build: ${{ github.event.inputs.MANIFEST_BRANCH }}
-          Device: [Device Tree/Branch](${{ env.DEVICE_TREE_URL }}/tree/${{ inputs.DEVICE_TREE_BRANCH }})
-          Commit: Most recent [commit](${{ env.DEVICE_TREE_URL }}/commit/${{ env.COMMIT_ID }}) during building.
+          Build: ${{ github.event.inputs.MANIFEST_BRANCH }} || K${{ github.event.inputs.KERNEL_VERSION }}
+          Device: [Device Tree/Branch](${{ github.event.inputs.DEVICE_TREE }}/tree/${{ github.event.inputs.DEVICE_TREE_BRANCH }})
+          Commit: Most recent [commit](${{ github.event.inputs.DEVICE_TREE }}/commit/${{ env.COMMIT_ID }}) during building.
           MD5 (img): ${{ env.MD5_IMG }}
-          
+
     - name: Run LDCheck
       run: |
         cd tools

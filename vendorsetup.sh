@@ -19,15 +19,15 @@
 #
 FDEVICE="beryllium"
 
-export FOX_VARIANT="Enjoy"
-export FOX_BUILD_TYPE="Unofficial"
-export FOX_ENABLE_APP_MANAGER=1
-export FOX_KERNEL=4.19
+#export FOX_VARIANT="Enjoy"
+#export FOX_BUILD_TYPE="Unofficial"
+#export FOX_ENABLE_APP_MANAGER=1
+#export FOX_KERNEL=4.19
 export OF_MAINTAINER="ThRE-Team"
 export OF_USE_HEXDUMP=1
 export BUILD_USERNAME="1213F3"
 export BUILD_HOSTNAME="ThRE"
-export FOX_MAINTAINER_PATCH_VERSION="4"
+#export FOX_MAINTAINER_PATCH_VERSION="4"
 
 fetch_sdm845_common_repo() {
 	local URL=https://github.com/ThRE-Team/sdm845_fox.git;
@@ -74,7 +74,12 @@ fi
 if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	# clone the common repo if necessary
 	
-	if [ "$FOX_VARIANT" = "Enjoy" ]; then
+	if [ "$FOX_BUILD_TYPE" = "Next" ]; then
+		if [ "$FOX_KERNEL" = "4.9" ]; then
+			export FOX_VARIANT="Legacy"
+		else
+			export FOX_VARIANT="Enjoy"
+		fi
 		fetch_enjoy_common_repo;
 	else
 		fetch_sdm845_common_repo;

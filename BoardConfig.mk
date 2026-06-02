@@ -30,7 +30,7 @@ ifeq ($(FOX_KERNEL),4.19)
 endif
 
 # Enjoy
-ifeq ($(FOX_VARIANT),Enjoy)
+ifeq ($(FOX_BUILD_TYPE),Next)
     TW_NO_SCREEN_BLANK := true
     TW_INPUT_BLACKLIST := "hbtp_vm"
 endif
